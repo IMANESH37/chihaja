@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PatientController;
 
+use App\Http\Controllers\CentreController;
 
 /*
 |--------------------------------------------------------------------------
@@ -72,4 +73,10 @@ Route::post('/updatetype', [App\Http\Controllers\TypeurgenceController::class, '
 
 
 Route::get('/centre', [App\Http\Controllers\CentreController::class, 'index']);
+
 Route::post('/updatecentre', [App\Http\Controllers\CentreController::class, 'update'])->name('updatecentre');
+Route::get('/centre', [CentreController::class, 'index'])->name('centre.index');
+Route::get('/centre/enCours', [CentreController::class, 'enCours'])->name('centre.enCours');
+Route::get('/centre/termines', [CentreController::class, 'termines'])->name('centre.termines');
+Route::get('/centre/enAttente', [CentreController::class, 'enAttente'])->name('centre.enAttente');
+Route::get('/centre/recent', [CentreController::class, 'recent'])->name('centre.recent');

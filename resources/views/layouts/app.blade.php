@@ -6,17 +6,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>TABIBI</title>
-    <script src="{{ asset('js/app.js') }}" defer></script>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="./assets/css/tailwind.output.css" />
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"  />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
+    <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script
+      src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js"
+      defer ></script>
+    
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.slim.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
   <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-  <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+  <script src="./assets/js/init-alpine.js"></script>
+
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 
 </head>
 <body>
@@ -52,7 +63,7 @@
                         <span class="title">Demandes</span>
                     </a>
                 </li>
-                <li>
+                <!-- <li>
                     <a href="./archive">
                         <span class="icon">
                             <ion-icon name="help-outline"></ion-icon>
@@ -61,7 +72,7 @@
                         
                     </a>
 
-                </li>
+                </li> -->
                 @endif
                 @if(Auth::user()->id == 1)
                 <li>
@@ -91,6 +102,7 @@
                     </a>
 
                 </li>
+                
                 
                 @endif
                 @endauth
@@ -153,7 +165,7 @@
 
 
 
-        <main class="py-4">
+        <main class="h-full pb-16 overflow-y-auto">
             @yield('content')
         </main>
 
@@ -453,10 +465,11 @@ body {
   position: relative;
   width: 100%;
   padding: 20px;
-  display: grid;
+  /* display: grid; */
   grid-template-columns: 2fr 1fr;
   grid-gap: 30px;
-  /* margin-top: 10px; */
+  margin-top: 10px;
+  max-width: 100%;
 }
 
 .details .recentOrders {
@@ -467,6 +480,8 @@ body {
   padding: 20px;
   box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
   border-radius: 20px;
+  max-width: 100%;
+  
 }
 
 .details .cardHeader {
@@ -477,6 +492,7 @@ body {
 .cardHeader h2 {
   font-weight: 600;
   color: var(--blue);
+  padding: 20px;
 }
 .cardHeader .btn {
   position: relative;
@@ -498,6 +514,7 @@ body {
 .details .recentOrders table tr {
   color: var(--black1);
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  
 }
 .details .recentOrders table tr:last-child {
   border-bottom: none;

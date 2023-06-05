@@ -46,7 +46,7 @@
 
                 <div class="card">
                     <div>
-                        <div class="numbers">43</div>
+                        <div class="numbers">{{\DB::table('patients')->count()}}</div>
                         <div class="cardName">Patients</div>
                     </div>
 
@@ -58,7 +58,7 @@
                 <a href="medecinhome">
                 <div class="card">
                     <div>
-                        <div class="numbers">6</div>
+                        <div class="numbers">{{\DB::table('medecins')->count()}}</div>
                         <div class="cardName">Medcins</div>
                     </div>
 
@@ -70,8 +70,8 @@
                 <a href="./urgencehome" >
                 <div class="card">
                     <div>
-                        <div class="numbers">10</div>
-                        <div class="cardName">Urgences</div>
+                        <div class="numbers">{{\DB::table('urgences')->count()}}</div>
+                        <div class="cardName">Urgence</div>
                     </div>
 
                     <div class="iconBx">
@@ -81,8 +81,8 @@
                 </a>
                 <div class="card">
                     <div>
-                        <div class="numbers">7,842</div>
-                        <div class="cardName">Demandes</div>
+                        <div class="numbers">{{\DB::table('messages')->count()}}</div>
+                        <div class="cardName">Messages</div>
                     </div>
 
                     <div class="iconBx">

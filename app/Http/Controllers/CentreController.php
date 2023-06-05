@@ -8,6 +8,7 @@ use App\Models\Medecin;
 use Illuminate\Support\Facades\DB;
 
 
+
 class CentreController extends Controller
 {
     //
@@ -28,19 +29,20 @@ class CentreController extends Controller
   
 
 
-    public function index()
-    {
-        $centres = DB::table('centreurgences')
-        ->leftJoin('patients', 'centreurgences.idp', '=', 'patients.id_p')
-        ->select('centreurgences.*', 'patients.nom as nom_patient')
-        ->get();
-    
-        $medecins = Medecin::where('online','=',1)->get() ;
-        return view('Centre',['centres' =>$centres,'medecins' =>$medecins ]);
-    
-
-    }
-
+     public function index()
+     {
+         $centres = DB::table('centreurgences')
+         ->leftJoin('patients', 'centreurgences.idp', '=', 'patients.id_p')
+         ->select('centreurgences.*', 'patients.nom as nom_patient')
+         ->get();
+     
+         $medecins = Medecin::where('online','=',1)->get() ;
+         return view('Centre',['centres' =>$centres,'medecins' =>$medecins ]);
+     
+ 
+     }
+ 
+   
     public function update(Request $request)
     {
         $centres =DB::update("UPDATE `centreurgences` SET `idm`='$request->idm',`accepte`='attend' WHERE centreurgences.id=$request->idu;");
