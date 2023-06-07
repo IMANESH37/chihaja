@@ -4,7 +4,7 @@
 <div class="details">
     <div class="recentOrders">
         <div class="cardHeader">
-            <h2>Old</h2>
+            <h2>Récent</h2>
             <!-- <a href="" class="btn">View All</a> -->
         </div>
         <table>
@@ -22,7 +22,7 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach($centres->sortByDesc('updated_at') as $key => $centre)
+                @foreach($centres->where('accepte', '<>', 'terminer')->sortByDesc('updated_at') as $key => $centre)
                 <tr>
                     <td class="text-center">{{ $centre->id}}</td>
                     <td class="text-center">{{ $centre->updated_at}}</td>
@@ -33,8 +33,6 @@
                         <span class="status pending">En attente</span>
                         @elseif($centre->accepte=="accepter")
                         <span class="status inProgress">En cours de consultation</span>
-                        @elseif($centre->accepte=="terminer")
-                        <span class="status delivered">Terminé</span>
                         @elseif($centre->accepte==null)
                         <h5>Aucun</h5>
                         @elseif($centre->accepte=="refuse")
@@ -42,26 +40,33 @@
                         @endif
                     </td>
                     <!-- MEDCIN -->
-                    <td class="text-center">
-                        <form method="POST" action="{{route('updatecentre') }}">
-                            @csrf
-                            <input type="hidden" name="idu" value="{{$centre->id}}"     />
-                            @if($centre->accepte==null || $centre->accepte=="refuse")
-                            <select name="idm">
-                                @foreach($medecins as $key=>$medecin)
-                                <option value="{{$medecin->id_me}}">{{ $medecin->nom}}</option>
-                                @endforeach      
-                            </select>
-                            @if(sizeof($medecins)>0)
-                            <button type="submit" class="btn btn-success">send</button>
-                            @endif
-                            @elseif($centre->accepte=="attend" || $centre->accepte=="accepter" || $centre->accepte=="terminer")
-                            @foreach($medecins as $key=>$medecin)
-                            {{ $medecin->nom}}
-                            @endforeach 
-                            @endif
-                        </form> 
-                    </td>
+                  <!-- MEDCIN -->
+<td class="text-center">
+    @if($centre->accepte==null || $centre->accepte=="refuse")
+    <form method="POST" action="{{route('updatecentre') }}">
+        @csrf
+        <input type="hidden" name="idu" value="{{$centre->id}}" />
+       
+        <select name="idm" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+        <option selected>Choisir un medcin</option>
+        @foreach($medecins as $key=>$medecin)
+            
+            <option value="{{$medecin->id_me}}" @if($centre->idm == $medecin->id_me) selected @endif>{{ $medecin->nom}}</option>
+            @endforeach
+        </select>
+        @if(sizeof($medecins)>0)
+        <button type="submit" class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-semibold hover:text-white py-2 px-4 border border-gray-400 hover:border-transparent rounded-sm">send</button>
+        @endif
+    </form>
+    @else
+    @foreach($medecins as $key=>$medecin)
+    @if($centre->idm == $medecin->id_me)
+    {{ $medecin->nom}}
+    @endif
+    @endforeach
+    @endif
+</td>
+
                     <td class="text-center">
                         <a href="{{ route('detailspatient', ['id' => $centre->idp]) }}">
                             <i style="font-size: 29px; margin-left: -50px;" class="fa" id="details">&#xf06e;</i>
@@ -106,9 +111,12 @@
                         @endif
                     </td>
                     <td class="text-center">
-                        @foreach($medecins as $key=>$medecin)
-                        {{ $medecin->nom}}
-                        @endforeach
+    @foreach($medecins as $key=>$medecin)
+    @if($centre->idm == $medecin->id_me)
+    {{ $medecin->nom}}
+    @endif
+    @endforeach
+  
                     </td>
                     <td class="text-center">
                         <a href="{{ route('detailspatient', ['id' => $centre->idp]) }}">

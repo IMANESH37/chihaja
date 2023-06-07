@@ -19,6 +19,36 @@
       <div class="col col-lg-6 mb-4 mb-lg-0">
         <div class="card mb-3" style="border-radius: .5rem;">
           <div class="row g-0">
+
+          <div class="w-full mb-8 overflow-hidden rounded-lg shadow-xs">
+              <div class="w-full overflow-x-auto">
+              <table class="w-full whitespace-no-wrap">
+   
+              <thead>
+                    <tr
+                      class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800"
+                    >
+                    <th class="px-4 py-3">Nom</th>
+                    <th class="px-4 py-3">Age</th>
+                    <th class="px-4 py-3">NOM</th>
+         <th class="px-4 py-3">EMAIL</th>
+         <th class="px-4 py-3">MDP</th>
+         <th class="px-4 py-3">Specialite</th>
+         <th class="px-4 py-3">TEL</th>
+         <th class="px-4 py-3">OPTIONS</th>
+      </tr>
+
+
+
+
+
+
+
+
+
+
+
+
             <div class="col-md-4 gradient-custom text-center text-white"
               style="border-top-left-radius: .5rem; border-bottom-left-radius: .5rem;">
               <img src="{{ $patient->img }}" alt="Avatar" class="img-fluid my-5" style="width: 80px;">

@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container pt-5" style="width:100%">
-<a href="{{route('urgencehome') }}" class="btn btn-warning">Back</a>
+<!-- <a href="{{route('urgencehome') }}" class="btn btn-warning">Back</a> -->
 <form method="POST" action="{{route('addurgence') }}" enctype="multipart/form-data">
 @csrf
   

@@ -36,9 +36,10 @@ class CentreController extends Controller
          ->select('centreurgences.*', 'patients.nom as nom_patient')
          ->get();
      
-         $medecins = Medecin::where('online','=',1)->get() ;
+        //  $medecins = Medecin::where('online','=',1)->get() ;
+        //  return view('Centre',['centres' =>$centres,'medecins' =>$medecins ]);
+         $medecins =DB::table('medecins')->get() ;
          return view('Centre',['centres' =>$centres,'medecins' =>$medecins ]);
-     
  
      }
  
